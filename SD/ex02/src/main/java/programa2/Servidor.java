@@ -1,5 +1,6 @@
 package programa2;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -18,11 +19,15 @@ public class Servidor {
 		System.out.println("Nova conexão com o cliente " + cliente.getInetAddress().getHostAddress());
 
 		Scanner entrada = new Scanner(cliente.getInputStream());
+                                
 
-		while (entrada.hasNextLine()) {
-			System.out.println(entrada.nextLine());
-		}
+                byte[] bytes = new byte[1000];
 
+                int i;
+                while ((i = cliente.getInputStream().read(bytes)) > 0) {
+                    new FileOutputStream("D:/User/Documentos/Coding/TADS/TADS-4/SD/ex02/src/main/java/programa2/recebido.txt").write(bytes, 0, i);
+                }
+                
 		entrada.close();
 		servidor.close();
 	}

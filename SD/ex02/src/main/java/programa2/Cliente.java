@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 public class Cliente {
@@ -14,20 +18,17 @@ public class Cliente {
 		
 		System.out.println("O cliente se conectou ao servidor!");
 
-		Scanner teclado = new Scanner(System.in);
-                
-                String path = "D:\\User\\Downloads\\teste.txt";
-                byte[] m = path.getBytes();
-                System.out.println(m);
+		Path path = Paths.get("D:/User/Documentos/Coding/TADS/TADS-4/SD/ex02/src/main/java/programa2/arquivo.txt");
+                List<String> linhasArquivo = Files.readAllLines(path);
                 
 		
 		PrintStream saida = new PrintStream(cliente.getOutputStream());
 
-		while (teclado.hasNextLine()) {
-			saida.println(teclado.nextLine());
-		}
+		
+                saida.println(linhasArquivo);
+		
 
 		saida.close();
-		teclado.close();
+		
 	}
 }

@@ -1,0 +1,1 @@
+Olá, esse é um teste, caso esse texto esteja em um aquvio chamado "recebido.txt" significa que tudo deu certo :)
